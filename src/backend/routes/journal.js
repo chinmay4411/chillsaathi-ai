@@ -1,6 +1,6 @@
 import express from "express";
 import jwt from "jsonwebtoken";
-import Journal from "../../src/backend/models/Journal.js";
+import Journal from "../models/journal.js";
 const router = express.Router();
 function auth(req, res, next) {
   const token = req.header("Authorization");
