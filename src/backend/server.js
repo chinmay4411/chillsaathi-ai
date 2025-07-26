@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors({
-  origin: 'https://chillsaathi-ai-1.onrender.com',
+  origin: "https://chillsaathi-ai-1.onrender.com", // ✅ Frontend on Render
   credentials: true
 }));
 app.use(express.json());
@@ -30,6 +30,7 @@ mongoose.connect(process.env.MONGO_URI, {
 })
 .then(() => console.log("✅ MongoDB connected"))
 .catch((err) => console.error("❌ MongoDB connection error:", err));
+
 // Gemini API Check
 if (!process.env.GEMINI_API_KEY) {
   console.error("❌ Missing GEMINI_API_KEY in .env");
@@ -37,7 +38,7 @@ if (!process.env.GEMINI_API_KEY) {
 }
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
-// 📌 Chatbot Route
+// 📌 Gemini Chatbot Route
 app.post("/chat", async (req, res) => {
   const userMessage = req.body.message;
   try {
@@ -51,15 +52,14 @@ app.post("/chat", async (req, res) => {
   }
 });
 
-// Routes
+// 🔗 Main API Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/journal", journalRoutes);
 app.use("/api/mood", moodRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/meditations", meditationRoutes);
 
-
-
+// 🟢 Start Server
 app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
+  console.log(`🚀 Server running on port ${PORT}`);
 });
