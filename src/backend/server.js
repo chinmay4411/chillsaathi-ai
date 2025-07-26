@@ -17,8 +17,14 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
+app.use(cors({
+  origin: [
+    "https://chillsaathi-ai-1.onrender.com",
+    "https://chill-saathi-an-ai-enabled-mental-wellness-web-appli-j4hxilen2.vercel.app"
+  ],
+  credentials: true
+}));
 
-app.use(cors());
 app.use(express.json());
 
 // MongoDB Connection
