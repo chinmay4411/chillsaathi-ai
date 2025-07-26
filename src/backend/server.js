@@ -17,10 +17,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors({
-  origin: "https://chillsaathi-ai-1.onrender.com", // ✅ Frontend on Render
-  credentials: true
-}));
+
+app.use(cors());
 app.use(express.json());
 
 // MongoDB Connection
